@@ -13,5 +13,10 @@ public interface SpittleRepository {
      */
     List<Spittle> findSpittles(long max, int count);
 
+    /**
+     *  根据id获取Spittle
+     * @param spittleId id
+     * @return spittle
+     */
     Spittle findOne(long spittleId);
 }
