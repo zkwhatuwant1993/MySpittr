@@ -1,5 +1,6 @@
 package com.zk.myspittr.config;
 
+import com.zk.myspittr.web.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 

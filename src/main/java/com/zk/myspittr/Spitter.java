@@ -12,23 +12,23 @@ public class Spitter {
     private Long id;
 
     @NotNull
-    @Size(min = 5, max = 16)
+    @Size(min = 5, max = 16, message = "{username.size}")
     private String username;
 
     @NotNull
-    @Size(min = 5, max = 25)
+    @Size(min = 5, max = 25, message = "{password.size}")
     private String password;
 
     @NotNull
-    @Size(min = 2, max = 30)
+    @Size(min = 2, max = 30, message = "{firstName.size}")
     private String firstName;
 
     @NotNull
-    @Size(min = 2, max = 30)
+    @Size(min = 2, max = 30, message = "{lastName.size}")
     private String lastName;
 
     @NotNull
-    @Email
+    @Email(message = "{email.valid}")
     private String email;
 
     public Spitter() {
@@ -47,10 +47,22 @@ public class Spitter {
         this.email = email;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @NotNull
+    @Size(min = 2, max = 30, message = "{firstName.size}")
     public String getUsername() {
         return username;
     }
 
+    @NotNull
+    @Size(min = 2, max = 30, message = "{firstName.size}")
     public void setUsername(String username) {
         this.username = username;
     }
@@ -61,14 +73,6 @@ public class Spitter {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
