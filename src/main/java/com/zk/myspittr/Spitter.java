@@ -55,14 +55,10 @@ public class Spitter {
         this.id = id;
     }
 
-    @NotNull
-    @Size(min = 2, max = 30, message = "{firstName.size}")
     public String getUsername() {
         return username;
     }
 
-    @NotNull
-    @Size(min = 2, max = 30, message = "{firstName.size}")
     public void setUsername(String username) {
         this.username = username;
     }
