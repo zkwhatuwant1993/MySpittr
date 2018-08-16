@@ -64,6 +64,12 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>3.0.9.RELEASE</version>
+        </dependency>
+
         <!--log相关-->
 
         <dependency>
