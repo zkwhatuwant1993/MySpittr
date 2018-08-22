@@ -19,4 +19,10 @@ public interface SpittleRepository {
      * @return spittle
      */
     Spittle findOne(long spittleId);
+
+    /**
+     * 保存
+     * @param spittle 要保存的数据
+     */
+    void saveSpittle(Spittle spittle);
 }

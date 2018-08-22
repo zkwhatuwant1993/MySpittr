@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{spitter.appname}"></title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}" />
+</head>
+<body>
+    <div th:fragment="header">
+        <a th:href="@{/}"><img
+                th:src="@{/resources/images/spitter_logo_50.png}" border="0"/></a>
+    </div>
+    <div>content</div>
+    <div th:fragment="footer">
+        Copyright &copy; Craig Walls
+    </div>
+</body>
+</html>

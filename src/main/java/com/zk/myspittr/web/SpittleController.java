@@ -2,14 +2,16 @@ package com.zk.myspittr.web;
 
 import com.zk.myspittr.Spittle;
 import com.zk.myspittr.data.SpittleRepository;
+import com.zk.myspittr.exceptions.DuplicateSpittleException;
+import com.zk.myspittr.exceptions.SpittleNotFoundException;
+import com.zk.myspittr.model.SpittleForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,15 +31,36 @@ public class SpittleController {
     public List<Spittle> spittles(
             @RequestParam(value = "max", defaultValue = MAX_LONG_AS_STRING) long max,
             @RequestParam(value = "count", defaultValue = "20") int count) {
-        return repository.findSpittles(max, count);
+        List<Spittle> spittleList = new ArrayList<>();
+        spittleList.add(new Spittle(1L, "aa", new Date(), 112.111, 29.111));
+        return spittleList;
+//        return repository.findSpittles(max, count);
     }
 
     @RequestMapping(value = "/{spittleId}", method = RequestMethod.GET)
     public String spittle(
             @PathVariable("spittleId") long spittleId, Model model) {
-        model.addAttribute(repository.findOne(spittleId));
+        Spittle spittle = repository.findOne(spittleId);
+        if (spittle == null) {
+            throw new SpittleNotFoundException();
+        }
+        model.addAttribute(spittle);
         return "spittle";
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public String saveSpittle(SpittleForm form, Model model) {
+        try {
+            repository.saveSpittle(new Spittle(null, form.getMessage(), new Date(), form.getLongitude(), form.getLatitude()));
+            return "redirect:/spittles";
+        } catch (DuplicateSpittleException e) {
+            return "error/duplicates";
+        }
+    }
+
+    @ExceptionHandler(DuplicateSpittleException.class)
+    public String handleDuplicateSpittle() {
+        return "error/duplicate";
+    }
 
 }
